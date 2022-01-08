@@ -1,0 +1,64 @@
+:root {
+    --surge-green:#00FFA3;
+    --ocean-blue:#03E1FF;
+    --purple-dino:#DC1FFF;
+    --black:#101921;
+}
+.gradient-animation-text{
+    background-image: linear-gradient(206deg, #03e1ff, #00ffa3, #dc1fff);
+
+}
+.gradient-animation{
+    background: linear-gradient(206deg, #03e1ff, #00ffa3, #dc1fff);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 29s ease infinite;
+    -moz-animation: AnimationName 29s ease infinite;
+    animation: AnimationName 29s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:83% 0%}
+    50%{background-position:18% 100%}
+    100%{background-position:83% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:83% 0%}
+    50%{background-position:18% 100%}
+    100%{background-position:83% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:83% 0%}
+    50%{background-position:18% 100%}
+    100%{background-position:83% 0%}
+}
+.flex-container{
+    display: flex;
+    background-color:var(--black);
+    flex-wrap : wrap;
+}
+.trades{
+    margin:10px;
+    text-align: center;
+    height: 200px;
+    width: 330px;
+    border: solid;
+    overflow: scroll;
+}
+header{
+    display: flex;  /* aligns all child elements (flex items) in a row */
+    padding:10px;
+    color:var(--black);
+    font-weight: bold;
+  }
+ 
+
+.row {
+    display: flex;  /* aligns all child elements (flex items) in a row */
+    padding:3px;
+    background-color: var(--black);
+  }
+  
+  .col {
+    flex: 1;        /* distributes space on the line equally among items */
+  }
