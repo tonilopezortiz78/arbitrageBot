@@ -17,7 +17,7 @@ async function loadBitkub() {
 async function loadBinance() {
   const res = await fetch("https://api.coingecko.com/api/v3/exchanges/binance");
   const binance = await res.json();
-  bnbBinance= await binance.tickers.filter(({base, target}) => base === 'BNB'&& target === "USD");
+  bnbBinance= await binance.tickers.filter(({base, target}) => base === 'BNB'&& target === "USDT");
   console.log(bnbBinance);
   
   return bnbBinance[0];
