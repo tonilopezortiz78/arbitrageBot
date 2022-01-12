@@ -1,0 +1,58 @@
+version: "3.6"
+
+services:
+  influxdb:
+    image: influxdb:1.8-alpine
+    environment:
+      - INFLUXDB_DB=coingecko
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+    restart: always
+    ports:
+      - "8086:8086"
+    networks:
+      - iot
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+        #- ./influxdb.yml:/etc/influxdb2/config.yml, version 2 problems auth.
+  
+  telegraf:
+    image: telegraf
+    #container_name: LabRoboticsTelegraf
+    restart: always
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    networks:
+      - iot
+  
+  grafana:
+    image: grafana/grafana
+    restart: always
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=
+    ports:
+      - "3000:3000"
+    networks:
+      - iot
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+
+networks:
+  iot:
+
+volumes:
+  influxdb-data:
+  grafana-data:
+
+#  references:
+#  https://lucassardois.medium.com/handling-iot-data-with-mqtt-telegraf-influxdb-and-grafana-5a431480217
